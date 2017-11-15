@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/azwatchsboot.iml" filepath="$PROJECT_DIR$/azwatchsboot.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/azwatchsboot_main.iml" filepath="$PROJECT_DIR$/.idea/modules/azwatchsboot_main.iml" group="azwatchsboot" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/azwatchsboot_test.iml" filepath="$PROJECT_DIR$/.idea/modules/azwatchsboot_test.iml" group="azwatchsboot" />
+    </modules>
+  </component>
+</project>

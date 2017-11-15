@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.demo.JsoupLearningTests" tests="3" skipped="0" failures="0" errors="0" timestamp="2017-11-13T16:22:53" hostname="MacBook-Pro.local" time="2.745">
+  <properties/>
+  <testcase name="getCheapestPrice" classname="com.example.demo.JsoupLearningTests" time="1.009"/>
+  <testcase name="getAmazonSearchPageTitles" classname="com.example.demo.JsoupLearningTests" time="0.9"/>
+  <testcase name="getAmazonSearchPageWholeItems" classname="com.example.demo.JsoupLearningTests" time="0.836"/>
+  <system-out><![CDATA[2017-11-13 17:22:54.601  INFO 2428 --- [    Test worker] com.example.demo.JsoupLearningTests      : Found cheapest price of 1.70 for first element.
+2017-11-13 17:22:55.501  INFO 2428 --- [    Test worker] com.example.demo.JsoupLearningTests      : Found 16 titles
+2017-11-13 17:22:56.337  INFO 2428 --- [    Test worker] com.example.demo.JsoupLearningTests      : Found 16 whole elements.
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

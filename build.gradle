@@ -1,6 +1,7 @@
 buildscript {
 	ext {
 		springBootVersion = '1.5.8.RELEASE'
+		currentEnviroment = '123'
 	}
 	repositories {
 		mavenCentral()
@@ -8,11 +9,26 @@ buildscript {
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
 	}
+
 }
+
+
+def loadConfiguration() {
+	def environment = hasProperty('env') ? env : 'dev'
+	setProperty('currentEnviroment', environment);
+	println "12345################Target environment: $currentEnviroment"
+}
+
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
+loadConfiguration()
+if(currentEnviroment == 'ci'){
+	apply plugin: 'war'
+}
+
+
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
@@ -28,4 +44,7 @@ dependencies {
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '1.5.8.RELEASE'
 	compile 'org.jsoup:jsoup:1.10.3'
+	if(currentEnviroment == 'ci'){
+		providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+	}
 }
