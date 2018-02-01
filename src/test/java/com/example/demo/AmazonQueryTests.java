@@ -6,6 +6,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
 
+import java.util.List;
+
 public class AmazonQueryTests {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
@@ -75,5 +77,18 @@ public class AmazonQueryTests {
         Assert.assertTrue(amazonProduct.getAmazonId().equals("3423210559"));
         Assert.assertTrue(amazonProduct.getOfferListing().getItems().size() > 0);
         Assert.assertTrue(!amazonProduct.getISBN13().equals(""));
+        Assert.assertNotNull(amazonProduct.getCoverImages());
+    }
+
+    @Test
+    public void testParseImageUrls(){
+        String imageString = "{\"https://images-na.ssl-images-amazon.com/images/I/41u0j5xqKKL._SX312_BO1,204,203,200_.jpg\":[314,499],\"https://images-na.ssl-images-amazon.com/images/I/41u0j5xqKKL._SY344_BO1,204,203,200_.jpg\":[218,346]}";
+        AmazonQuery amazonQuery = new AmazonQuery();
+
+        List<String> imageUrls = amazonQuery.getCoverUrls(imageString);
+
+        Assert.assertTrue(imageUrls.size() == 2);
+        Assert.assertTrue(imageUrls.get(0).equals("https://images-na.ssl-images-amazon.com/images/I/41u0j5xqKKL._SX312_BO1,204,203,200_.jpg"));
+        Assert.assertTrue(imageUrls.get(1).equals("https://images-na.ssl-images-amazon.com/images/I/41u0j5xqKKL._SY344_BO1,204,203,200_.jpg"));
     }
 }

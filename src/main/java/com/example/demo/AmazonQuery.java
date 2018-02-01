@@ -11,6 +11,8 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 public class AmazonQuery {
@@ -153,6 +155,7 @@ public class AmazonQuery {
             amazonProduct.setAuthor(getAuthor(doc));
             amazonProduct.setFullName(getFullName(doc));
             amazonProduct.setISBN13(getISBN13(doc));
+            amazonProduct.setCoverImages(getCoverImage(doc));
 
             setOfferListing(amazonProduct);
             amazonProduct.setCheapest(getCheapest(amazonProduct));
@@ -180,6 +183,41 @@ public class AmazonQuery {
 
     private String getISBN13(Document document){
         return document.select("td.bucket").select("div.content").select("li:contains(ISBN-10)").first().textNodes().get(0).text().trim();
+    }
+
+    private List<String> getCoverImage(Document doc){
+        String imageString = doc.select("#imgBlkFront").attr("data-a-dynamic-image").toString();
+        return getCoverUrls(imageString);
+    }
+
+    public List<String> getCoverUrls(String imageString){
+        boolean urlOpend = false;
+        String url = "";
+
+        List<String> urls = new ArrayList<>();
+
+        for(int i = 0; i < imageString.length(); i++){
+            char element = imageString.charAt(i);
+
+            if(element == '\"' && urlOpend == false){
+                urlOpend = true;
+                continue;
+            }
+
+            if(element != '\"' && urlOpend){
+                url += element;
+                continue;
+            }
+
+            if(element == '\"' && urlOpend){
+                urlOpend = false;
+                urls.add(url);
+                url = "";
+                continue;
+            }
+        }
+
+        return urls;
     }
 
     private void setOfferListing(AmazonProduct amazonProduct) {

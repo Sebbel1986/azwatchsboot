@@ -2,6 +2,8 @@ package com.example.demo;
 
 import sun.font.AttributeValues;
 
+import java.util.List;
+
 public class AmazonProduct {
     private String name;
     private String amazonId;
@@ -10,8 +12,7 @@ public class AmazonProduct {
     private String fullName;
     private AmazonOfferListingItem cheapest;
     private String ISBN13;
-
-
+    private List<String> coverImages;
 
     public String getAmazonId() {
         return this.amazonId;
@@ -57,23 +58,23 @@ public class AmazonProduct {
         this.author = author;
     }
 
-
-
     public void setFullName(String format) {
         this.fullName = format;
     }
-
-
 
     public void setCheapest(AmazonOfferListingItem cheapest){
         this.cheapest = cheapest;
     }
 
-
-
-
-
     public void setISBN13(String ISBN13) {
         this.ISBN13 = ISBN13;
+    }
+
+    public List<String> getCoverImages() {
+        return coverImages;
+    }
+
+    public void setCoverImages(List<String> coverImages) {
+        this.coverImages = coverImages;
     }
 }
